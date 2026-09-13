@@ -1,0 +1,208 @@
+.about-section {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  cursor: none;
+}
+
+/* Custom glowing cursor. Fixed + pointer-events:none so it follows the
+   mouse without blocking clicks on anything underneath it. */
+.magic-cursor {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  transform: translate(-4px, -4px);
+  pointer-events: none;
+  z-index: 999;
+  animation: wandGlow 1.6s ease-in-out infinite;
+}
+
+@keyframes wandGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px #fff6c9) drop-shadow(0 0 6px #ffe066);
+  }
+  50% {
+    filter: drop-shadow(0 0 12px #fff6c9) drop-shadow(0 0 18px #ffd93d);
+  }
+}
+
+/* The water gif is a real <img>, sized at 100% width with natural
+   height — this makes the section's height match the image exactly,
+   so there's never empty space or forced cropping/zooming. */
+.about-bg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Overlaid on top of the image, matching its exact box. Percentage-based
+   positions inside are anchored to the image itself, so they stay in the
+   right spot regardless of the image's actual pixel dimensions. */
+.about-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* Every reveal item starts hidden/offset; only animates once the
+   section has scrolled into view (has-entered class added by JS). */
+.about-item {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.has-entered .about-item {
+  animation: aboutReveal 0.7s ease-out forwards;
+}
+
+@keyframes aboutReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about-frame {
+  position: absolute;
+  top: 10%;
+  right: 13%;
+  width: 30%;
+  max-width: 350px;
+}
+
+.textbox {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(2px);
+  border-radius: 22px;
+  padding: 18px 22px;
+  color: #2b2b2b;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.has-entered .textbox {
+  animation:
+    aboutReveal 0.7s ease-out forwards,
+    textboxGlow 2.6s ease-in-out 0.7s infinite;
+}
+
+@keyframes textboxGlow {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.75);
+  }
+}
+
+.textbox-intro {
+  top: 15%;
+  left: 18%;
+  width: 34%;
+  min-width: 280px;
+}
+
+.textbox-skills {
+  top: 30%;
+  left: 6%;
+  width: 46%;
+  min-width: 320px;
+  font-size: 0.82rem;
+}
+
+.download-btn {
+  position: absolute;
+  top: 45%;
+  left: 38%;
+  display: inline-block;
+  background: #ffffff;
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 26px;
+  border-radius: 999px;
+  transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.download-btn:hover {
+  background: #ffd1e3;
+  color: #7a2b45;
+  box-shadow: 0 0 18px rgba(255, 145, 190, 0.85);
+  transform: translateY(-2px);
+}
+
+.about-hiumi {
+  position: absolute;
+  top: 46%;
+  right: 15%;
+  width: 22%;
+  max-width: 300px;
+}
+
+.about-frog {
+  position: absolute;
+  top: 40%;
+  right: 1%;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* "Projects" header text, sitting in front of the paper connector on
+   the left side, near the torn top edge — positioned relative to the
+   paper's own box (see .about-paper-wrap), not the water image. */
+.about-project-header {
+  position: absolute;
+  top: 40%;
+  left: 4%;
+  width: 30%;
+  max-width: 500px;
+}
+
+/* Wraps the paper image so the Projects header can be positioned
+   relative to the paper's own dimensions instead of the water image's. */
+/* Wraps the paper image so the Projects header can be positioned
+   relative to the paper's own dimensions instead of the water image's.
+   Using margin-top (not a relative "bottom" offset) to pull it up —
+   relative offsets shift the visual box but still reserve their
+   original space, which was making the whole section way too tall. */
+.about-paper-wrap {
+  position: relative;
+  width: 100%;
+  margin-top: -250px;
+  z-index: 1;
+}
+
+.about-paper-connector {
+  display: block;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .about-stage {
+    position: static;
+  }
+  .about-frame,
+  .textbox-intro,
+  .textbox-skills,
+  .download-btn,
+  .about-hiumi,
+  .about-frog,
+  .about-project-header {
+    position: static;
+    width: 90%;
+    max-width: 420px;
+    margin: 0 auto 16px;
+    display: block;
+    right: auto;
+    top: auto;
+    left: auto;
+  }
+}

@@ -1,0 +1,481 @@
+.contact-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  min-height: 90vh;
+}
+
+.contact-bg {
+  display: block;
+  width: 100%;
+  height: 90vh;
+  object-fit: cover;
+  object-position: top;
+}
+
+.contact-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.contact-title {
+  position: absolute;
+  top: 6%;
+  left: 12%;
+  width: 26%;
+  max-width: 300px;
+}
+
+.contact-form-wrap {
+  position: absolute;
+  top: 20%;
+  left: 12%;
+  width: 30%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(2px);
+  border-radius: 20px;
+  padding: 18px 20px;
+  animation: contactFormGlow 2.4s ease-in-out infinite;
+}
+
+@keyframes contactFormGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(255, 143, 193, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(255, 143, 193, 0.9), 0 0 36px rgba(255, 95, 168, 0.5);
+  }
+}
+
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #ff8fc1;
+  box-shadow: 0 0 6px rgba(255, 143, 193, 0.6);
+}
+
+.contact-submit {
+  align-self: flex-start;
+  background: #ffffff;
+  color: #333;
+  font-weight: 700;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.contact-submit:hover:not(:disabled) {
+  background: #ffd1e3;
+  color: #7a2b45;
+  box-shadow: 0 0 18px rgba(255, 145, 190, 0.85);
+  transform: translateY(-2px);
+}
+
+.contact-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form-status {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.form-status-success {
+  color: #2e7d32;
+}
+
+.form-status-error {
+  color: #c62828;
+}
+
+.contact-link {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ff8fc1;
+  width: fit-content;
+  animation: contactLinkGlow 2s ease-in-out infinite;
+  transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+  color: #ff5fa8;
+}
+
+@keyframes contactLinkGlow {
+  0%, 100% {
+    text-shadow: 0 0 4px rgba(255, 143, 193, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(255, 143, 193, 1), 0 0 22px rgba(255, 95, 168, 0.7);
+  }
+}
+
+/* LinkedIn button */
+.linkedin-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  width: fit-content;
+  background: #0369a1;
+  color: #fafafa;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+  transition: background-color 0.5s ease;
+}
+
+.linkedin-btn:hover {
+  background: #0284c7;
+}
+
+.linkedin-icon {
+  width: 2rem;
+  height: 2rem;
+  fill: #fafafa;
+  flex-shrink: 0;
+}
+
+.linkedin-name {
+  border-left: 2px solid rgba(255, 255, 255, 0.5);
+  padding: 0 0.4rem;
+  white-space: nowrap;
+}
+
+.linkedin-tooltip {
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  z-index: 10;
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  background: #0284c7;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  white-space: nowrap;
+}
+
+.linkedin-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -0.25rem;
+  left: 1.25rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  background: #0284c7;
+  transform: rotate(45deg);
+}
+
+.linkedin-btn:hover .linkedin-tooltip {
+  opacity: 1;
+}
+
+.contact-bathtub {
+  position: absolute;
+  bottom: -5%;
+  left: 6%;
+  width: 50%;
+  max-width: 800px;
+}
+
+.music-player {
+  position: absolute;
+  bottom: 30%;
+  right: 12%;
+  width: 34%;
+  max-width: 340px;
+  background: #f0c0da;
+  border-radius: 15px;
+  padding: 1em;
+  padding-bottom: 1.1em;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.currentplaying {
+  display: flex;
+  align-items: center;
+  margin: 0.4em 0.4em 0.8em;
+}
+
+.currentplaying .spotify {
+  width: 40px;
+  height: 40px;
+  margin-right: 0.6em;
+  flex-shrink: 0;
+}
+
+.currentplaying .heading {
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.loader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 3.4em;
+  padding: 0 0.6em;
+  border-radius: 10px;
+  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.loader:hover {
+  background-color: #f0f0f0;
+}
+
+.song {
+  flex: 1;
+  min-width: 0;
+  margin-right: 0.8em;
+  color: black;
+}
+
+.song .name {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.song .artist {
+  margin: 2px 0 0;
+  font-size: 0.7rem;
+  color: #666;
+}
+
+.albumcover {
+  height: 36px;
+  width: 36px;
+  object-fit: cover;
+  background-color: rgb(233, 232, 232);
+  border-radius: 5px;
+  flex-shrink: 0;
+  margin-right: 0.8em;
+}
+
+.play {
+  height: 1.4em;
+  width: 1.4em;
+  clip-path: polygon(0% 0%, 0% 100%, 100% 50%);
+  background-color: black;
+  flex-shrink: 0;
+}
+
+.loading {
+  display: flex;
+  align-items: flex-end;
+  height: 1.6em;
+  gap: 0.15em;
+  flex-shrink: 0;
+}
+
+.load {
+  width: 3px;
+  background-color: #1db954;
+  animation: musicBar 1s infinite;
+  border-radius: 5px;
+}
+
+.load:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.load:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.load:nth-child(3) {
+  animation-delay: 0.5s;
+}
+.load:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+@keyframes musicBar {
+  0% {
+    height: 0.2em;
+  }
+  25% {
+    height: 0.7em;
+  }
+  50% {
+    height: 1.5em;
+  }
+  100% {
+    height: 0.2em;
+  }
+}
+
+/* Curtains: cover the full section on each half, slide open once the
+   section has scrolled into view. */
+.curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 52%;
+  z-index: 5;
+  transition: transform 1.2s ease-in-out;
+}
+
+.curtain img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.curtain-left {
+  left: 0;
+  transform: translateX(0%);
+}
+
+.curtain-right {
+  right: 0;
+  transform: translateX(0%);
+}
+
+.curtain-mirrored {
+  transform: scaleX(-1);
+}
+
+.has-entered .curtain-left {
+  transform: translateX(-82%);
+}
+
+.has-entered .curtain-right {
+  transform: translateX(82%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curtain {
+    transition: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .contact-stage {
+    position: static;
+  }
+  .contact-title,
+  .contact-form-wrap,
+  .contact-bathtub,
+  .music-player {
+    position: static;
+    width: 90%;
+    max-width: 380px;
+    margin: 0 auto 16px;
+    display: block;
+    right: auto;
+    bottom: auto;
+    top: auto;
+    left: auto;
+  }
+}
+
+/* Ambient floating bubbles, drawn purely in CSS (no image). */
+.floating-bubbles {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.css-bubble {
+  position: absolute;
+  bottom: -10%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.9),
+    rgba(200, 230, 255, 0.35) 55%,
+    rgba(150, 200, 255, 0.15) 100%
+  );
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.6), 0 0 6px rgba(150, 200, 255, 0.3);
+  animation: bubbleRise linear infinite;
+}
+
+@keyframes bubbleRise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(30px);
+    opacity: 0;
+  }
+}
+
+.css-bubble-1 { left: 5%; width: 22px; height: 22px; animation-duration: 9s; animation-delay: 0s; }
+.css-bubble-2 { left: 15%; width: 14px; height: 14px; animation-duration: 7s; animation-delay: 1.2s; }
+.css-bubble-3 { left: 28%; width: 30px; height: 30px; animation-duration: 11s; animation-delay: 0.5s; }
+.css-bubble-4 { left: 40%; width: 18px; height: 18px; animation-duration: 8s; animation-delay: 2.5s; }
+.css-bubble-5 { left: 52%; width: 26px; height: 26px; animation-duration: 10s; animation-delay: 1.8s; }
+.css-bubble-6 { left: 63%; width: 16px; height: 16px; animation-duration: 7.5s; animation-delay: 3.2s; }
+.css-bubble-7 { left: 74%; width: 24px; height: 24px; animation-duration: 9.5s; animation-delay: 0.8s; }
+.css-bubble-8 { left: 83%; width: 12px; height: 12px; animation-duration: 6.5s; animation-delay: 2s; }
+.css-bubble-9 { left: 91%; width: 20px; height: 20px; animation-duration: 10.5s; animation-delay: 3.8s; }
+.css-bubble-10 { left: 48%; width: 34px; height: 34px; animation-duration: 12s; animation-delay: 4.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .css-bubble {
+    animation: none;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,330 @@
+.projects-section {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  margin-top: -300px;
+  cursor: none;
+}
+
+/* Custom glowing cursor for this section only. Fixed + pointer-events:
+   none so it follows the mouse without blocking clicks underneath it. */
+.fork-cursor {
+  position: fixed;
+  width: 52px;
+  height: auto;
+  transform: translate(-4px, -4px);
+  pointer-events: none;
+  z-index: 999;
+  animation: forkGlow 1.6s ease-in-out infinite;
+}
+
+@keyframes forkGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px #fff6c9) drop-shadow(0 0 6px #ffe066);
+  }
+  50% {
+    filter: drop-shadow(0 0 12px #fff6c9) drop-shadow(0 0 18px #ffd93d);
+  }
+}
+
+/* Capped height + cover crop instead of the image's full natural
+   height — this is what actually controls how long the section is.
+   Increase/decrease the height value to make it longer/shorter. */
+.projects-bg {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  object-position: top;
+}
+
+.projects-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.proj-item {
+  position: absolute;
+}
+
+.proj-cap {
+  top: -30px;
+  left: -12%;
+  width: 50%;
+  max-width: 620px;
+  transform: rotate(-8deg);
+}
+
+.proj-camera {
+  top: -50px;
+  right: 6%;
+  width: 50%;
+  max-width: 350px;
+}
+
+.proj-earphones {
+  top: 0%;
+  left: 27%;
+  width: 50%;
+  max-width: 500px;
+  transform: scaleX(-1);
+}
+
+.proj-lipgloss {
+  top: 13%;
+  left: 25%;
+  width: 50%;
+  max-width: 200px;
+  transform: rotate(-70deg);
+}
+
+/* Film rolls: roll1 sits underneath roll2, both tilted slightly left,
+   spaced apart so they read as two separate pieces. Each has its OWN
+   independent hover preview — hovering roll1 only enlarges roll1,
+   hovering roll2 only enlarges roll2. */
+.proj-rolls {
+  top: 35%;
+  left: 9%;
+  width: 26%;
+  max-width: 280px;
+  height: auto;
+}
+
+.roll-wrap {
+  position: absolute;
+  width: 60%;
+  cursor: none;
+}
+
+.roll-wrap-1 {
+  top: 50px;
+  left: 0;
+  z-index: 1;
+  transform: rotate(-8deg);
+}
+
+.roll-wrap-2 {
+  top: 70px;
+  left: 30%;
+  z-index: 2;
+  transform: rotate(8deg);
+}
+
+.roll {
+  display: block;
+  width: 100%;
+  transition: opacity 0.2s ease;
+}
+
+.roll-1 {
+  transform: rotate(-8deg);
+  opacity: 0.85;
+}
+
+.roll-2 {
+  transform: rotate(-10deg);
+}
+
+/* Hide the small original while its own preview is showing */
+.roll-wrap:hover > .roll {
+  opacity: 0;
+}
+
+/* Enlarged solo preview shown on hover — each roll's preview is
+   completely independent of the other. */
+.roll-preview-single {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 340px;
+  transform: translate(-50%, -50%) scale(0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 20;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.35));
+}
+
+.roll-wrap:hover .roll-preview-single {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Plates, coffee, cake — all clickable buttons styled to look like
+   plain image props, with a floating "click me" label. */
+.proj-plate,
+.proj-coffee,
+.proj-cake {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: none;
+}
+
+.proj-plate-left {
+  top: 40%;
+  left: 30%;
+  width: 50%;
+  max-width: 400px;
+}
+
+.proj-plate-right {
+  top: 26%;
+  right: -8%;
+  width: 50%;
+  max-width: 600px;
+}
+
+.plate-img {
+  display: block;
+  width: 100%;
+}
+
+.plate-img-right {
+  transform: scaleX(-1);
+}
+
+.proj-coffee {
+  top: 60%;
+  left: 60%;
+  width: 50%;
+  max-width: 200px;
+}
+
+.coffee-img {
+  display: block;
+  width: 100%;
+}
+
+.proj-cake {
+  top: 30%;
+  left: 55%;
+  width: 17%;
+  max-width: 190px;
+}
+
+.cake-img {
+  display: block;
+  width: 100%;
+}
+
+.click-me {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #333;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.proj-plate:hover .plate-img,
+.proj-coffee:hover .coffee-img,
+.proj-cake:hover .cake-img {
+  transform: translateY(-4px);
+}
+
+.proj-plate-right:hover .plate-img-right {
+  transform: scaleX(-1) translateY(-4px);
+}
+
+/* Modal */
+.project-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.project-modal-box {
+  position: relative;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 36px 32px;
+  max-width: 560px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: modalGlow 2.2s ease-in-out infinite, modalPopIn 0.3s ease-out;
+}
+
+@keyframes modalPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes modalGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 1);
+  }
+}
+
+.project-modal-box h3 {
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+  color: #222;
+}
+
+.project-modal-role {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+  margin: 0 0 14px;
+}
+
+.project-modal-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #666;
+}
+
+.project-modal-close:hover {
+  color: #000;
+}
+
+@media (max-width: 900px) {
+  .projects-stage {
+    position: static;
+  }
+  .proj-item {
+    position: static;
+    width: 60%;
+    max-width: 220px;
+    margin: 0 auto 16px;
+    display: block;
+    right: auto;
+    top: auto;
+    left: auto;
+  }
+}

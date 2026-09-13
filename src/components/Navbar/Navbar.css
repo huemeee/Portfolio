@@ -1,0 +1,142 @@
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 16px;
+  background: transparent;
+}
+
+/* Everything (cloud, stars, links, trailing stars) sits together as one
+   tight cluster, centered in the viewport, like the reference design. */
+.nav-cluster {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  max-width: 100%;
+  flex-wrap: nowrap;
+}
+
+.nav-brand {
+  position: relative;
+  width: 200px;
+  height: 156px;
+  flex-shrink: 0;
+}
+
+.nav-cloud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  transform: rotate(6deg);
+}
+
+.nav-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 260px;
+  transform: translate(-50%, -50%);
+}
+
+.nav-logo-clickable {
+  cursor: pointer;
+}
+
+.nav-stars {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.star-mid {
+  width: 34px;
+}
+
+.star-small {
+  width: 22px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-shrink: 0;
+}
+
+.nav-btn {
+  height: 30px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.nav-btn:hover {
+  transform: translateY(-3px);
+}
+
+/* Constant pulsing glow, per the design spec */
+@keyframes glowBlue {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px #5eb3ff) drop-shadow(0 0 2px #5eb3ff);
+  }
+  50% {
+    filter: drop-shadow(0 0 12px #5eb3ff) drop-shadow(0 0 6px #8fd0ff);
+  }
+}
+
+@keyframes glowWhite {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px #ffffff) drop-shadow(0 0 2px #ffffff);
+  }
+  50% {
+    filter: drop-shadow(0 0 10px #ffffff) drop-shadow(0 0 5px #f5f5f5);
+  }
+}
+
+@keyframes glowYellow {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px #ffe066) drop-shadow(0 0 2px #ffe066);
+  }
+  50% {
+    filter: drop-shadow(0 0 12px #ffd93d) drop-shadow(0 0 6px #fff3b0);
+  }
+}
+
+.glow-blue { animation: glowBlue 2.4s ease-in-out infinite; }
+.glow-white { animation: glowWhite 2.4s ease-in-out infinite; }
+.glow-yellow { animation: glowYellow 2.4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-blue, .glow-white, .glow-yellow, .nav-btn {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .nav-cluster { gap: 10px; }
+  .nav-links { gap: 12px; }
+  .nav-stars-right { display: none; }
+  .nav-stars-left { gap: 3px; }
+  .nav-btn { height: 18px; }
+  .nav-brand { width: 54px; height: 42px; }
+  .nav-cloud { width: 54px; }
+  .nav-logo { width: 32px; top: 11px; left: 11px; }
+}
+
+@media (max-width: 480px) {
+  .site-nav { padding: 8px 10px; }
+  .nav-cluster { gap: 6px; }
+  .nav-links { gap: 8px; }
+  .nav-btn { height: 13px; }
+  .nav-brand { width: 40px; height: 32px; }
+  .nav-cloud { width: 40px; }
+  .nav-logo { width: 24px; top: 8px; left: 8px; }
+  .nav-stars-left .star { display: none; }
+}
